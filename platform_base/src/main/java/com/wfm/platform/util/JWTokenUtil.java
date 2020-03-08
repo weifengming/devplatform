@@ -92,16 +92,6 @@ public class JWTokenUtil {
                 && !isTokenExpired(token));
     }
 
-    public Claims parseJwt(String token) {
-        try {
-            final Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
-            return claims;
-        } catch (Exception e) {
-            //不做处理
-        }
-        return null;
-    }
-
     private Date calculateExpirationDate(Date createdDate) {
         return new Date(createdDate.getTime() + expiration * 1000);
     }

@@ -14,4 +14,12 @@ public class StatusCode {
     public static final int REMOTEERROR = 20004;
     //重复操作
     public static final int REPERROR = 20005;
+    //token不合法
+    public static final int ILLEGAL_TOKEN = 50008;
+    //token过期
+    public static final int TOKEN_EXPIRED = 50014;
+    //其他客户端登录
+    public static final int OTHER_CLIENTS_LOGIN = 50012;
+
+
 }

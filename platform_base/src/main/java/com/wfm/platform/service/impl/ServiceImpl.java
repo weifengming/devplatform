@@ -50,7 +50,7 @@ public abstract class ServiceImpl<PK extends Serializable, T extends Serializabl
             BaseModel model = (BaseModel) entity;
             if (BeanUtils.isEmpty(model.getId())) {
                 IdWorker idWorker = new IdWorker();
-                model.setId(idWorker.nextId());
+                model.setId(idWorker.nextId()+"");
             }
             if (model.getCreateTime() == null) {
                 model.setCreateTime(LocalDateTime.now());

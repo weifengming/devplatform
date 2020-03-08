@@ -5,4 +5,6 @@ import com.wfm.platform.entities.SysUser;
 public interface SysUserMapper extends BaseDao<String, SysUser> {
 
     SysUser findByName(String loginname);
+
+    SysUser findByMobile(String telphone);
 }

@@ -5,4 +5,8 @@ import com.wfm.platform.entities.SysUser;
 public interface SysUserService extends Service<String, SysUser> {
 
     SysUser login(SysUser suser);
+
+    void addUser(SysUser suser);
+
+    SysUser getUserByLoginName(String loginname);
 }

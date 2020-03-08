@@ -30,6 +30,13 @@
         from sys_user
         where loginname = #{loginname,jdbcType=VARCHAR}
     </select>
+    <!--根据手机号获取用户-->
+    <select id="findByMobile" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        where telphone = #{telphone,jdbcType=VARCHAR}
+    </select>
     <select id="get" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List"/>
