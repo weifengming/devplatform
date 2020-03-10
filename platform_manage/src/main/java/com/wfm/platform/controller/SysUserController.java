@@ -42,9 +42,9 @@ public class SysUserController {
         if (null == suserLogin) {
             return new Result(false, StatusCode.LOGINERROR, "登录失败");
         }
-        String token = jwToken.generateToken(suserLogin.getLoginname());
+        String token = jwToken.generateToken(suserLogin.getUsername());
         Map<String, Object> map = new HashMap<>();
-        map.put("loginname", suserLogin.getLoginname());
+        map.put("loginname", suserLogin.getUsername());
         map.put("token", token);
         return new Result(true, StatusCode.OK, "登录成功", map);
     }
@@ -74,11 +74,11 @@ public class SysUserController {
     @ApiOperation(value = "获取用户信息", httpMethod = "GET", notes = "获取用户信息")
     @RequestMapping(value = "/user/getInfo", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     public Result getInfo(HttpServletRequest request) {
-        String loginname = (String) request.getAttribute("loginname");
-        SysUser suser = sysUserService.getUserByLoginName(loginname);
-        if(BeanUtils.isNotEmpty(suser)){
+        String username = (String) request.getAttribute("username");
+        SysUser suser = sysUserService.getUserByLoginName(username);
+        if (BeanUtils.isNotEmpty(suser)) {
             Map<String, Object> map = new HashMap<>();
-            map.put("loginname", loginname);
+            map.put("username", username);
             //用户头像
             map.put("avatar", "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
             return new Result(true, StatusCode.OK, "操作成功", map);

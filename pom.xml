@@ -12,6 +12,7 @@
         <module>platform_manage</module>
         <module>platform_generator</module>
         <module>platform_generator_db</module>
+        <module>platform_model</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -42,7 +42,7 @@ public class SysUserServiceImpl extends ServiceImpl<String, SysUser> implements 
      */
     @Override
     public SysUser login(SysUser suser) {
-        SysUser suser_old = userDao.findByName(suser.getLoginname());
+        SysUser suser_old = userDao.findByName(suser.getUsername());
         // 演示环境下密码暂时不做验证
         if (null != suser_old/* && pwdEncoder.matches(suser.getPassword(), suser_old.getPassword())*/) {
             return suser_old;
@@ -57,13 +57,13 @@ public class SysUserServiceImpl extends ServiceImpl<String, SysUser> implements 
      */
     @Override
     public void addUser(SysUser suser) {
-        if (StringHelper.isEmpty(suser.getLoginname())) {
+        if (StringHelper.isEmpty(suser.getUsername())) {
             throw new RequiredException("添加用户失败，用户【loginname】必填！");
         }
         //判断登录名是否存在
-        SysUser suserByLoginname = getUserByLoginName(suser.getLoginname());
+        SysUser suserByLoginname = getUserByLoginName(suser.getUsername());
         if (BeanUtils.isNotEmpty(suserByLoginname)) {
-            throw new RequiredException(new StringBuilder().append("添加用户失败，账号【").append(suser.getLoginname()).append("】已经存在").toString());
+            throw new RequiredException(new StringBuilder().append("添加用户失败，账号【").append(suser.getUsername()).append("】已经存在").toString());
         }
         if (StringHelper.isEmpty(suser.getTelphone())) {
             throw new RequiredException("添加用户失败，用户【mobile】必填！");
@@ -89,7 +89,7 @@ public class SysUserServiceImpl extends ServiceImpl<String, SysUser> implements 
             getDao().create(suser);
         } catch (Exception e) {
             if (e.getCause() instanceof MySQLIntegrityConstraintViolationException) {
-                throw new RuntimeException(new StringBuilder().append("添加用户失败，帐号【").append(suser.getLoginname()).append("】已存在，请重先通过“deletePhysical”接口物理删除！").toString());
+                throw new RuntimeException(new StringBuilder().append("添加用户失败，帐号【").append(suser.getUsername()).append("】已存在，请重先通过“deletePhysical”接口物理删除！").toString());
             }
             throw new RuntimeException(e.getMessage());
         }

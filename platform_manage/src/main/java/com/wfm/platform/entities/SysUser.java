@@ -23,11 +23,11 @@ public class SysUser extends BaseModel<String> implements Serializable {
     @ApiModelProperty(name = "id", value = "主键")
     private String id;
 
-    @ApiModelProperty(name = "username", value = "用户名")
+    @ApiModelProperty(name = "username", value = "登录名")
     private String username;
 
-    @ApiModelProperty(name = "loginname", value = "登录名")
-    private String loginname;
+    @ApiModelProperty(name = "realname", value = "真实姓名")
+    private String realname;
 
     @ApiModelProperty(name = "password", value = "密码")
     private String password;

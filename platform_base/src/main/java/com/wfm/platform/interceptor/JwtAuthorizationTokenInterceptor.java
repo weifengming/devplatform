@@ -17,11 +17,11 @@ import java.io.PrintWriter;
 
 /**
  * @author Weifengming
- * @description JWT拦截器
+ * @description JWT权限拦截器
  * @date 2020/2/16
  */
 @Component
-public class JwtInterceptor extends HandlerInterceptorAdapter {
+public class JwtAuthorizationTokenInterceptor extends HandlerInterceptorAdapter {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
@@ -40,7 +40,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
 
                     boolean isValidate = jwtoken.validateToken(token, username);
                     if (isValidate) {
-                        request.setAttribute("loginname", username);
+                        request.setAttribute("username", username);
                         request.setAttribute("token", token);
                         return true;
                     }
