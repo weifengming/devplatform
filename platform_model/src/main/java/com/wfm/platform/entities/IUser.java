@@ -34,5 +34,14 @@ public abstract interface IUser extends UserDetails {
     String getPassword();
 
     @Override
+    boolean isAccountNonExpired();
+
+    @Override
+    boolean isAccountNonLocked();
+
+    @Override
+    boolean isCredentialsNonExpired();
+
+    @Override
     boolean isEnabled();
 }
