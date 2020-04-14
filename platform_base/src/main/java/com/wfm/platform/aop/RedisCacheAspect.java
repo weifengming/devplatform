@@ -25,8 +25,8 @@ import java.util.Map;
  * @description 缓存切面处理类
  * @date 2020/2/24
  */
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class RedisCacheAspect {
 
     /**

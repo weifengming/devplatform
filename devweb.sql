@@ -30,7 +30,7 @@ CREATE TABLE `sys_dict` (
   `type` tinyint(4) DEFAULT NULL,
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `create_by` varchar(64) DEFAULT NULL,
-  `update_time` timestamp NULL DEFAULT '0000-00-00 00:00:00',
+  `update_time` timestamp NULL DEFAULT '1970-01-01 10:00:00',
   `update_by` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -52,7 +52,7 @@ CREATE TABLE `sys_fun` (
   `order_num` bigint(20) DEFAULT NULL,
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `create_by` varchar(64) DEFAULT NULL,
-  `update_time` timestamp NULL DEFAULT '0000-00-00 00:00:00',
+  `update_time` timestamp NULL DEFAULT '1970-01-01 10:00:00',
   `update_by` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -73,7 +73,7 @@ CREATE TABLE `sys_fun_action` (
   `comment` varchar(255) DEFAULT NULL,
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `create_by` varchar(64) DEFAULT NULL,
-  `update_time` timestamp NULL DEFAULT '0000-00-00 00:00:00',
+  `update_time` timestamp NULL DEFAULT '1970-01-01 10:00:00',
   `update_by` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -117,7 +117,7 @@ CREATE TABLE `sys_menu` (
   `order_num` bigint(4) DEFAULT NULL,
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `create_by` varchar(64) DEFAULT NULL,
-  `update_time` timestamp NULL DEFAULT '0000-00-00 00:00:00',
+  `update_time` timestamp NULL DEFAULT '1970-01-01 10:00:00',
   `update_by` varchar(64) DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL COMMENT '状态  0：禁用   1：正常',
   PRIMARY KEY (`id`)
@@ -140,7 +140,7 @@ CREATE TABLE `sys_org` (
   `order_num` int(11) DEFAULT NULL,
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `create_by` varchar(64) DEFAULT NULL,
-  `update_time` timestamp NULL DEFAULT '0000-00-00 00:00:00',
+  `update_time` timestamp NULL DEFAULT '1970-01-01 10:00:00',
   `update_by` varchar(64) DEFAULT NULL,
   `del_flag` tinyint(4) DEFAULT NULL COMMENT '是否删除  -1：已删除  0：正常',
   PRIMARY KEY (`id`)
@@ -160,7 +160,7 @@ CREATE TABLE `sys_role` (
   `comment` varchar(255) DEFAULT NULL,
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `create_by` varchar(64) DEFAULT NULL,
-  `update_time` timestamp NULL DEFAULT '0000-00-00 00:00:00',
+  `update_time` timestamp NULL DEFAULT '1970-01-01 10:00:00',
   `update_by` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -202,7 +202,7 @@ CREATE TABLE `sys_user` (
   `comment` varchar(255) DEFAULT NULL,
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `create_by` varchar(64) DEFAULT NULL,
-  `update_time` timestamp NULL DEFAULT '0000-00-00 00:00:00',
+  `update_time` timestamp NULL DEFAULT '1970-01-01 10:00:00',
   `update_by` varchar(64) DEFAULT NULL,
   `del_flag` tinyint(4) DEFAULT NULL COMMENT '是否删除  -1：已删除  0：正常',
   PRIMARY KEY (`id`)
@@ -237,7 +237,7 @@ CREATE TABLE `sys_user_token` (
   `user_id` varchar(64) DEFAULT NULL,
   `token` varchar(255) DEFAULT NULL,
   `expire_in` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `create_time` timestamp NULL DEFAULT '0000-00-00 00:00:00',
+  `create_time` timestamp NULL DEFAULT '1970-01-01 10:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

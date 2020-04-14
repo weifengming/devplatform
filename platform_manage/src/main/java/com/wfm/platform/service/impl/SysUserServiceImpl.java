@@ -43,8 +43,8 @@ public class SysUserServiceImpl extends ServiceImpl<String, SysUser> implements 
     @Override
     public SysUser login(SysUser suser) {
         SysUser suser_old = userDao.findByName(suser.getUsername());
-        // 演示环境下密码暂时不做验证
-        if (null != suser_old/* && pwdEncoder.matches(suser.getPassword(), suser_old.getPassword())*/) {
+        // 演示环境下密码暂时不做验证 /* && pwdEncoder.matches(suser.getPassword(), suser_old.getPassword())*/
+        if (null != suser_old) {
             return suser_old;
         }
         return null;
