@@ -32,6 +32,9 @@ public class SysUser extends BaseModel<String> implements Serializable {
     @ApiModelProperty(name = "password", value = "密码")
     private String password;
 
+    @ApiModelProperty(name = "sex", value = "性别")
+    private String sex;
+
     @ApiModelProperty(name = "salt", value = "盐值")
     private String salt;
 
