@@ -1,5 +1,5 @@
 server:
-  port: 80
+  port: 8080
 
 mybatis:
   type-aliases-package: com.wfm.platform.entities          # 所有Entity别名类所在包

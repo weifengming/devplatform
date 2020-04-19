@@ -5,6 +5,7 @@
         <id column="id" property="id" jdbcType="VARCHAR"/>
         <result column="username" property="username" jdbcType="VARCHAR"/>
         <result column="realname" property="realname" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="TINYINT"/>
         <result column="password" property="password" jdbcType="VARCHAR"/>
         <result column="salt" property="salt" jdbcType="VARCHAR"/>
         <result column="head_img" property="headImg" jdbcType="VARCHAR"/>
@@ -20,7 +21,7 @@
         <result column="del_flag" property="delFlag" jdbcType="TINYINT"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, username, realname, password, salt, head_img, telphone, email, org_id, status,
+    id, username, realname, password, sex, salt, head_img, telphone, email, org_id, status,
     comment, create_time, create_by, update_time, update_by, del_flag
   </sql>
     <!--根据登录名获取用户-->
@@ -48,7 +49,7 @@
     where id = #{id,jdbcType=VARCHAR}
   </delete>
     <insert id="create" parameterType="com.wfm.platform.entities.SysUser">
-    insert into sys_user (id, username, realname,
+    insert into sys_user (id, username, realname, sex,
       password, salt, head_img, 
       telphone, email, org_id, 
       status, comment, create_time, 
@@ -56,6 +57,7 @@
       update_by, del_flag
       )
     values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR},
+      #{sex,jdbcType=TINYINT},
       #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{headImg,jdbcType=VARCHAR}, 
       #{telphone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{orgId,jdbcType=VARCHAR}, 
       #{status,jdbcType=TINYINT}, #{comment,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
@@ -66,7 +68,8 @@
     <update id="update" parameterType="com.wfm.platform.entities.SysUser">
     update sys_user
     set username = #{username,jdbcType=VARCHAR},
-      loginname = #{realname,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=TINYINT},
       password = #{password,jdbcType=VARCHAR},
       salt = #{salt,jdbcType=VARCHAR},
       head_img = #{headImg,jdbcType=VARCHAR},
