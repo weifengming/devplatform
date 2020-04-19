@@ -5,10 +5,8 @@ import com.wfm.platform.exception.StatusCode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMethod;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.builders.ResponseMessageBuilder;
+import springfox.documentation.builders.*;
+import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.ResponseMessage;
 import springfox.documentation.spi.DocumentationType;
@@ -37,6 +35,12 @@ public class SwaggerConfig {
 
     @Bean
     public Docket createRestApi() {
+
+        ParameterBuilder tokenPar = new ParameterBuilder();
+        List pars = new ArrayList();
+        tokenPar.name("Authorization").description("令牌").modelRef(new ModelRef("string")).parameterType("header").required(true).build();
+        pars.add(tokenPar.build());
+
         List<ResponseMessage> responseMessageList = new ArrayList<>();
         responseMessageList.add(new ResponseMessageBuilder().code(StatusCode.OK).message("请求成功").build());
         responseMessageList.add(new ResponseMessageBuilder().code(StatusCode.ERROR).message("请求失败").build());
@@ -54,6 +58,7 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.any())
                 //设置不显示错误接口地址
                 .paths(Predicates.not(PathSelectors.regex("/error.*")))
-                .paths(PathSelectors.regex("/.*")).build();
+                .paths(PathSelectors.regex("/.*")).build()
+                .globalOperationParameters(pars);
     }
 }

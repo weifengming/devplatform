@@ -3,7 +3,6 @@ package com.wfm.platform.controller;
 import com.wfm.platform.entities.Result;
 import com.wfm.platform.entities.SysUser;
 import com.wfm.platform.exception.StatusCode;
-import com.wfm.platform.query.PageList;
 import com.wfm.platform.query.QueryFilter;
 import com.wfm.platform.service.SysUserService;
 import com.wfm.platform.util.BeanUtils;
@@ -59,8 +58,8 @@ public class SysUserController {
     @ApiOperation(value = "分页获取用户信息", httpMethod = "POST", notes = "分页获取用户信息")
     @ApiParam(name = "queryFilter", value = "通用查询对象")
     @RequestMapping(value = "/user/getUserPage", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
-    public PageList<SysUser> getUserPage(@RequestBody QueryFilter queryFilter) {
-        return sysUserService.query(queryFilter);
+    public Result getUserPage(@RequestBody QueryFilter queryFilter) {
+        return new Result(true, StatusCode.OK, "分页获取用户信息成功", sysUserService.query(queryFilter));
     }
 
     @ApiOperation(value = "添加用户信息", httpMethod = "POST", notes = "添加用户信息")
