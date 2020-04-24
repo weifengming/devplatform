@@ -33,7 +33,7 @@ public class SysUser extends BaseModel<String> implements Serializable {
     private String password;
 
     @ApiModelProperty(name = "sex", value = "性别")
-    private String sex;
+    private Integer sex;
 
     @ApiModelProperty(name = "salt", value = "盐值")
     private String salt;
