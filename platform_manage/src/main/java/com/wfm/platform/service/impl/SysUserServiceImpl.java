@@ -57,6 +57,7 @@ public class SysUserServiceImpl extends ServiceImpl<String, SysUser> implements 
      */
     @Override
     public void addUser(SysUser suser) {
+        suser.setPassword("admin111111");
         if (StringHelper.isEmpty(suser.getUsername())) {
             throw new RequiredException("添加用户失败，用户【loginname】必填！");
         }
