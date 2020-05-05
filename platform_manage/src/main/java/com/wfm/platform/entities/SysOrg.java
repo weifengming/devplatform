@@ -19,7 +19,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Accessors(chain = true)
 @ApiModel(description = "组织机构")
-public class SysOrg implements Serializable {
+public class SysOrg extends BaseModel<String> implements Serializable {
 
     @ApiModelProperty(name = "id", value = "主键")
     private String id;
@@ -39,6 +39,9 @@ public class SysOrg implements Serializable {
     @ApiModelProperty(name = "orderNum", value = "序号")
     private Integer orderNum;
 
+    @ApiModelProperty(name = "delFlag", value = "删除标识")
+    private Integer delFlag;
+
     public void setId(String id) {
         this.id = id;
     }
@@ -46,8 +49,4 @@ public class SysOrg implements Serializable {
     public String getId() {
         return this.id;
     }
-    
-    @ApiModelProperty(name = "delFlag", value = "删除标识")
-    private Integer delFlag;
-
 }
