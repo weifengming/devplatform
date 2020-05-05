@@ -45,48 +45,46 @@
         where id = #{id,jdbcType=VARCHAR}
     </select>
     <delete id="remove" parameterType="java.lang.String">
-    delete from sys_user
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
+        delete from sys_user
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
     <insert id="create" parameterType="com.wfm.platform.entities.SysUser">
-    insert into sys_user (id, username, realname, sex,
-      password, salt, head_img, 
-      telphone, email, org_id, 
-      status, comment, create_time, 
-      create_by, update_time,
-      update_by, del_flag
-      )
-    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR},
-      #{sex,jdbcType=TINYINT},
-      #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{headImg,jdbcType=VARCHAR}, 
-      #{telphone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{orgId,jdbcType=VARCHAR}, 
-      #{status,jdbcType=TINYINT}, #{comment,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{createBy,jdbcType=VARCHAR},  #{updateTime,jdbcType=TIMESTAMP},
-      #{updateBy,jdbcType=VARCHAR},  #{delFlag,jdbcType=TINYINT}
-      )
-  </insert>
+        insert into sys_user (id, username, realname, sex,
+          password, salt, head_img,
+          telphone, email, org_id,
+          status, comment, create_time,
+          create_by, update_time,
+          update_by, del_flag
+          )
+        values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR},
+          #{sex,jdbcType=TINYINT},
+          #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{headImg,jdbcType=VARCHAR},
+          #{telphone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{orgId,jdbcType=VARCHAR},
+          #{status,jdbcType=TINYINT}, #{comment,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+          #{createBy,jdbcType=VARCHAR},  #{updateTime,jdbcType=TIMESTAMP},
+          #{updateBy,jdbcType=VARCHAR},  #{delFlag,jdbcType=TINYINT}
+          )
+    </insert>
     <update id="update" parameterType="com.wfm.platform.entities.SysUser">
-    update sys_user
-    set username = #{username,jdbcType=VARCHAR},
-      realname = #{realname,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=TINYINT},
-      password = #{password,jdbcType=VARCHAR},
-      salt = #{salt,jdbcType=VARCHAR},
-      head_img = #{headImg,jdbcType=VARCHAR},
-      telphone = #{telphone,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      org_id = #{orgId,jdbcType=VARCHAR},
-      status = #{status,jdbcType=TINYINT},
-      comment = #{comment,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      create_by = #{createBy,jdbcType=VARCHAR},
-      create_by_name = #{createByName,jdbcType=VARCHAR},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      update_by = #{updateBy,jdbcType=VARCHAR},
-      update_by_name = #{updateByName,jdbcType=VARCHAR},
-      del_flag = #{delFlag,jdbcType=TINYINT}
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
+        update sys_user
+        set username = #{username,jdbcType=VARCHAR},
+          realname = #{realname,jdbcType=VARCHAR},
+          sex = #{sex,jdbcType=TINYINT},
+          password = #{password,jdbcType=VARCHAR},
+          salt = #{salt,jdbcType=VARCHAR},
+          head_img = #{headImg,jdbcType=VARCHAR},
+          telphone = #{telphone,jdbcType=VARCHAR},
+          email = #{email,jdbcType=VARCHAR},
+          org_id = #{orgId,jdbcType=VARCHAR},
+          status = #{status,jdbcType=TINYINT},
+          comment = #{comment,jdbcType=VARCHAR},
+          create_time = #{createTime,jdbcType=TIMESTAMP},
+          create_by = #{createBy,jdbcType=VARCHAR},
+          update_time = #{updateTime,jdbcType=TIMESTAMP},
+          update_by = #{updateBy,jdbcType=VARCHAR},
+          del_flag = #{delFlag,jdbcType=TINYINT}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
     <!-- 分页查询 -->
     <select id="query" parameterType="java.util.Map" resultMap="BaseResultMap">
         select
@@ -96,6 +94,7 @@
             <if test="whereSql!=null">
                 ${whereSql}
             </if>
+            and del_flag = 2
         </where>
         <if test="orderBySql!=null">
             order by ${orderBySql}

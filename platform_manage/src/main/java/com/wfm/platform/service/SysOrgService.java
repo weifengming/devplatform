@@ -2,12 +2,11 @@ package com.wfm.platform.service;
 
 import com.wfm.platform.entities.SysOrg;
 
+import java.util.List;
+
 public interface SysOrgService {
-    int deleteById(String id);
 
-    int save(SysOrg record);
+    List<SysOrg> findAllParents();
 
-    SysOrg findById(String id);
-
-    int update(SysOrg record);
+    List<SysOrg> findChildrenByParentId(String parentId);
 }

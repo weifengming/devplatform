@@ -4,6 +4,7 @@ import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import com.wfm.platform.dao.BaseDao;
 import com.wfm.platform.dao.SysUserMapper;
 import com.wfm.platform.entities.SysUser;
+import com.wfm.platform.exception.NotFoundException;
 import com.wfm.platform.exception.RequiredException;
 import com.wfm.platform.service.SysUserService;
 import com.wfm.platform.util.BeanUtils;
@@ -57,6 +58,7 @@ public class SysUserServiceImpl extends ServiceImpl<String, SysUser> implements 
      */
     @Override
     public void addUser(SysUser suser) {
+        suser.setPassword("admin111111");
         if (StringHelper.isEmpty(suser.getUsername())) {
             throw new RequiredException("添加用户失败，用户【loginname】必填！");
         }
@@ -79,7 +81,7 @@ public class SysUserServiceImpl extends ServiceImpl<String, SysUser> implements 
         if (StringHelper.isEmpty(suser.getPassword())) {
             throw new RequiredException("添加用户失败，用户【password】必填！");
         }
-        suser.setDelFlag(Integer.valueOf(0));
+        suser.setDelFlag(Integer.valueOf(2));
         suser.setStatus(Integer.valueOf(1));
         suser.setId(idWorker.nextId() + "");
         suser.setCreateTime(LocalDateTime.now());
@@ -94,6 +96,37 @@ public class SysUserServiceImpl extends ServiceImpl<String, SysUser> implements 
             throw new RuntimeException(e.getMessage());
         }
 
+    }
+
+    @Override
+    public void updateById(SysUser suser) {
+        if (StringHelper.isEmpty(suser.getUsername())) {
+            throw new RequiredException("更新用户失败，用户帐号【account】必填！");
+        }
+        //判断登录名是否存在
+        SysUser suserByLoginname = getUserByLoginName(suser.getUsername());
+        if (BeanUtils.isEmpty(suserByLoginname)) {
+            throw new RequiredException(new StringBuilder().append("更新用户失败，根据账号【").append(suser.getUsername()).append("】没有找到对应的用户信息！").toString());
+        }
+        suserByLoginname.setRealname(suser.getRealname());
+        suserByLoginname.setSex(suser.getSex());
+        suserByLoginname.setTelphone(suser.getTelphone());
+        suserByLoginname.setEmail(suser.getEmail());
+        suserByLoginname.setOrgId(suser.getOrgId());
+        suserByLoginname.setStatus(suser.getStatus());
+        suserByLoginname.setComment(suser.getComment());
+
+        update(suserByLoginname);
+    }
+
+    public void deleteById(String id) {
+        SysUser sysUser = get(id);
+        if (BeanUtils.isEmpty(sysUser)) {
+            throw new NotFoundException("删除用户失败，用户帐号【account】不存在！");
+        }
+        sysUser.setDelFlag(1);
+
+        update(sysUser);
     }
 
     @Override

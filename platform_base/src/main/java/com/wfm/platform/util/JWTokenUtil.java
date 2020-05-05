@@ -6,13 +6,15 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.DefaultClock;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-
+@EnableConfigurationProperties({JWTokenUtil.class})
 @ConfigurationProperties(value = "jwt.config")
 public class JWTokenUtil {
     static final String CLAIM_KEY_USERNAME = "sub";

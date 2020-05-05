@@ -3,6 +3,7 @@ package com.wfm.platform.controller;
 import com.wfm.platform.entities.Result;
 import com.wfm.platform.entities.SysUser;
 import com.wfm.platform.exception.StatusCode;
+import com.wfm.platform.query.PageList;
 import com.wfm.platform.query.QueryFilter;
 import com.wfm.platform.service.SysUserService;
 import com.wfm.platform.util.BeanUtils;
@@ -59,15 +60,48 @@ public class SysUserController {
     @ApiParam(name = "queryFilter", value = "通用查询对象")
     @RequestMapping(value = "/user/getUserPage", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     public Result getUserPage(@RequestBody QueryFilter queryFilter) {
-        return new Result(true, StatusCode.OK, "分页获取用户信息成功", sysUserService.query(queryFilter));
+        try {
+            PageList<SysUser> query = sysUserService.query(queryFilter);
+            return new Result(true, StatusCode.OK, "分页获取用户信息成功", query);
+        } catch (Exception e) {
+            return new Result(false, StatusCode.ERROR, e.getMessage());
+        }
     }
 
     @ApiOperation(value = "添加用户信息", httpMethod = "POST", notes = "添加用户信息")
     @ApiParam(name = "suser", value = "用户对象")
     @RequestMapping(value = "/user/save", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     public Result save(@RequestBody SysUser suser) {
-        sysUserService.addUser(suser);
-        return new Result(true, StatusCode.OK, "添加成功");
+        try {
+            sysUserService.addUser(suser);
+            return new Result(true, StatusCode.OK, "添加成功");
+        } catch (Exception e) {
+            return new Result(false, StatusCode.ERROR, e.getMessage());
+        }
+    }
+
+    @ApiOperation(value = "更新用户信息", httpMethod = "POST", notes = "更新用户信息")
+    @ApiParam(name = "suser", value = "用户对象")
+    @RequestMapping(value = "/user/updateById", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+    public Result updateById(@RequestBody SysUser suser) {
+        try {
+            sysUserService.updateById(suser);
+            return new Result(true, StatusCode.OK, "更新成功");
+        } catch (Exception e) {
+            return new Result(false, StatusCode.ERROR, e.getMessage());
+        }
+    }
+
+    @ApiOperation(value = "删除用户信息", httpMethod = "DELETE", notes = "更新用户信息")
+    @ApiParam(name = "suser", value = "用户对象")
+    @RequestMapping(value = "/user/deleteById", method = RequestMethod.DELETE, produces = "application/json;charset=utf-8")
+    public Result deleteById(String id) {
+        try {
+            sysUserService.deleteById(id);
+            return new Result(true, StatusCode.OK, "删除成功");
+        } catch (Exception e) {
+            return new Result(false, StatusCode.ERROR, e.getMessage());
+        }
     }
 
     @ApiOperation(value = "获取用户信息", httpMethod = "GET", notes = "获取用户信息")

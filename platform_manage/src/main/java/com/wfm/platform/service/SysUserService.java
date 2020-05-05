@@ -9,4 +9,8 @@ public interface SysUserService extends Service<String, SysUser> {
     void addUser(SysUser suser);
 
     SysUser getUserByLoginName(String loginname);
+
+    void updateById(SysUser suser);
+
+    void deleteById(String id);
 }
