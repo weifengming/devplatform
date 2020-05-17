@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50709
 File Encoding         : 65001
 
-Date: 2020-04-02 07:30:51
+Date: 2020-05-16 14:17:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -149,6 +149,10 @@ CREATE TABLE `sys_org` (
 -- ----------------------------
 -- Records of sys_org
 -- ----------------------------
+INSERT INTO `sys_org` VALUES ('121sfsfdds4g67jgtyg6', '341gdfgsgfds', '运营部', '100001', null, '2', '2020-05-04 17:51:49', null, '1970-01-01 10:00:00', null, '2');
+INSERT INTO `sys_org` VALUES ('341gdfgsgfds', '0', '宏昌科技', '100000', null, '1', '2020-05-04 17:50:39', null, '2020-05-04 17:50:47', null, '2');
+INSERT INTO `sys_org` VALUES ('34242sdfsfs', '0', '昌云软件', '200000', null, null, '2020-05-04 18:51:05', null, '1970-01-01 10:00:00', null, '2');
+INSERT INTO `sys_org` VALUES ('sdsds5435v455yy', '341gdfgsgfds', '销售部', '100002', null, '3', '2020-05-04 17:52:40', null, '1970-01-01 10:00:00', null, '2');
 
 -- ----------------------------
 -- Table structure for `sys_role`
@@ -192,13 +196,14 @@ CREATE TABLE `sys_user` (
   `id` varchar(64) NOT NULL,
   `username` varchar(100) DEFAULT NULL,
   `realname` varchar(50) DEFAULT NULL,
+  `sex` tinyint(4) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `salt` varchar(40) DEFAULT NULL,
   `head_img` varchar(255) DEFAULT NULL,
   `telphone` varchar(13) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `org_id` varchar(64) DEFAULT NULL,
-  `status` tinyint(4) DEFAULT NULL COMMENT '状态  0：禁用   1：正常',
+  `status` tinyint(4) DEFAULT NULL COMMENT '状态  2：禁用   1：正常',
   `comment` varchar(255) DEFAULT NULL,
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `create_by` varchar(64) DEFAULT NULL,
@@ -211,7 +216,15 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1236207834929143808', 'sysadmin', '系统管理员', '$2a$10$j3LbvJE.E3vkjL2vJxazKuWTPySudZuIfdR/LIVNoGo3YAFM61jKG', '123', null, '18888888888', '123@qq.com', null, '1', '系统管理员', '2020-03-28 23:14:00', null, '2020-03-07 08:23:35', null, '0');
+INSERT INTO `sys_user` VALUES ('1236207834929143808', 'sysadmin', '系统管理员', '1', '$2a$10$j3LbvJE.E3vkjL2vJxazKuWTPySudZuIfdR/LIVNoGo3YAFM61jKG', '123', null, '18888888888', '123@qq.com', null, '1', '系统管理员', '2020-05-04 12:05:37', null, '2020-03-07 08:23:35', null, '2');
+INSERT INTO `sys_user` VALUES ('1256904157000921088', '1', '1', '1', '$2a$10$0CWxdsd/BLBcaiLpQRcz5.xsbkIcVcf8R/VhUhjqHuOiPjPYuwLeO', null, null, '1', '1', '1', '1', '1', '2020-05-04 17:44:13', null, '2020-05-04 17:44:02', null, '2');
+INSERT INTO `sys_user` VALUES ('1256904315537223680', '2', '2', '1', '$2a$10$7KjdU4d/NfmuCPMjxnWpoeAH2gAxSbpPNQPIrRN5yAHI8/7rTDlM2', null, null, '2', '2', '2', '1', '2', '2020-05-04 17:44:15', null, '2020-05-04 17:44:04', null, '2');
+INSERT INTO `sys_user` VALUES ('1256904650150408192', '3', '3', '1', '$2a$10$zah1EYbo1q3OHjsxS6X1K.mY.DvpteoKh2cJ4uXY8w/kPSWmLKqp.', null, null, '3', '3', '3', '1', '3', '2020-05-04 17:44:16', null, '2020-05-04 17:44:00', null, '2');
+INSERT INTO `sys_user` VALUES ('1256904983647907840', '5', '5', '1', '$2a$10$5b5dHPzQQTy78UvqB3y.XOPidJnkHfG.RAvYDrtlTDB4.evFaF6.y', null, null, '5', '5', '5', '1', '5', '2020-05-04 17:44:17', null, '2020-05-04 12:37:06', null, '2');
+INSERT INTO `sys_user` VALUES ('1256905043672592384', '6', '7', '1', '$2a$10$Hpt6Foo/baElHkU6n2ORZ.4HIkV2gKtB76ZqhyFbMgb3EbAUvz.a2', null, null, '7', '7', '7', '1', '7', '2020-05-04 17:44:17', null, '2020-05-04 11:53:10', null, '2');
+INSERT INTO `sys_user` VALUES ('1257242407645257728', '8', '33', '1', '$2a$10$64bum0AqKoBCNYefViAM4O/6e7o/.37HFm3o9W3y2YZwYR45vCj6O', null, null, '444', '7', '7', '1', '7', '2020-05-04 17:44:18', null, '2020-05-04 17:35:52', null, '2');
+INSERT INTO `sys_user` VALUES ('1257244523478687744', '0', '0', '1', '$2a$10$ki.wtOCJfuxgXR7aSxH7l.29csRGDHhno5IapeUerxSbIqjRqwlqS', null, null, '15611784834', '123@qq.com', '中软', '1', '1111', '2020-05-04 17:43:48', null, null, null, '2');
+INSERT INTO `sys_user` VALUES ('2456576575675675', 'www', 'www', '1', null, null, null, '15611234324', '276535342@qq.com', null, '1', null, '2020-05-04 13:03:51', null, '2020-05-04 12:36:35', null, '2');
 
 -- ----------------------------
 -- Table structure for `sys_user_role`
