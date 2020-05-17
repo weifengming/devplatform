@@ -8,6 +8,8 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDate;
@@ -22,7 +24,12 @@ import java.time.format.DateTimeFormatter;
  */
 @SpringBootApplication
 @MapperScan(basePackages = {"com.wfm.platform.**.dao"})
-public class ManageApplication {
+public class ManageApplication extends SpringBootServletInitializer {
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(ManageApplication.class);
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(BaseApplication.class,args);

@@ -1,6 +1,5 @@
 package com.wfm.platform.service.impl;
 
-import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import com.wfm.platform.dao.BaseDao;
 import com.wfm.platform.dao.SysUserMapper;
 import com.wfm.platform.entities.SysUser;
@@ -16,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDateTime;
 
 @Service
@@ -90,7 +90,7 @@ public class SysUserServiceImpl extends ServiceImpl<String, SysUser> implements 
         try {
             getDao().create(suser);
         } catch (Exception e) {
-            if (e.getCause() instanceof MySQLIntegrityConstraintViolationException) {
+            if (e.getCause() instanceof SQLIntegrityConstraintViolationException) {
                 throw new RuntimeException(new StringBuilder().append("添加用户失败，帐号【").append(suser.getUsername()).append("】已存在，请重先通过“deletePhysical”接口物理删除！").toString());
             }
             throw new RuntimeException(e.getMessage());

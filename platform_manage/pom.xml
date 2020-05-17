@@ -8,8 +8,8 @@
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>platform_manage</artifactId>
+    <packaging>war</packaging>
 
     <dependencies>
         <!--platform_base-->
@@ -23,6 +23,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.11</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -44,10 +45,10 @@
         </dependency>
 
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jetty</artifactId>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -77,5 +78,26 @@
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
 
+        <!--TOMCAT配置-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <warName>platform</warName>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
