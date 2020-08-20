@@ -3,6 +3,8 @@ package com.wfm.platform;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 /**
  * @author Weifengming
@@ -11,7 +13,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 @MapperScan(basePackages = {"com.wfm.platform.**.dao"})
-public class ManageApplication {
+public class ManageApplication extends SpringBootServletInitializer {
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(ManageApplication.class);
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(BaseApplication.class, args);
